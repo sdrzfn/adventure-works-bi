@@ -1,0 +1,302 @@
+/* --- Global Styles & Layout --- */
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  background-color: #f0f2f5;
+  /* Warna latar belakang umum */
+}
+
+.dashboard-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* --- Sidebar Styles --- */
+.sidebar {
+  width: 250px;
+  background-color: #1a202c;
+  /* Warna gelap untuk sidebar */
+  color: white;
+  box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-header {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid #2d3748;
+}
+
+.sidebar-header h1 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.sidebar-header span {
+  color: #4299e1;
+  /* Biru Adventure Works */
+}
+
+.sidebar-nav {
+  flex-grow: 1;
+  padding: 1rem 0;
+}
+
+.sidebar-nav a {
+  display: flex;
+  align-items: center;
+  padding: 12px 24px;
+  margin: 8px 16px;
+  text-decoration: none;
+  color: #a0aec0;
+  border-radius: 8px;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.sidebar-nav a:hover {
+  background-color: #2d3748;
+  color: white;
+}
+
+.sidebar-nav a.active {
+  background-color: #4299e1;
+  color: white;
+  font-weight: 600;
+}
+
+.nav-icon {
+  margin-right: 12px;
+}
+
+.sidebar-footer {
+  padding: 1rem;
+  border-top: 1px solid #2d3748;
+  text-align: center;
+  font-size: 0.75rem;
+  color: #718096;
+}
+
+
+/* --- Main Content Styles --- */
+.main-content {
+  flex-grow: 1;
+  padding: 32px;
+  overflow-y: auto;
+}
+
+.header-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.header-bar h2 {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: #2d3748;
+  margin: 0;
+}
+
+.header-bar p {
+  color: #718096;
+  margin: 4px 0 0 0;
+}
+
+.export-button {
+  background-color: white;
+  color: #4a5568;
+  padding: 8px 16px;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  border: 1px solid #e2e8f0;
+  cursor: pointer;
+  font-size: 0.875rem;
+  transition: background-color 0.2s;
+}
+
+.export-button:hover {
+  background-color: #f7fafc;
+}
+
+/* --- KPI Card Styles --- */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.kpi-card {
+  background-color: white;
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  border-left-width: 4px;
+  border-left-style: solid;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.kpi-title {
+  color: #718096;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.kpi-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #2d3748;
+}
+
+.kpi-icon-container {
+  padding: 12px;
+  border-radius: 50%;
+  opacity: 0.2;
+}
+
+/* --- Charts and Table Styles --- */
+.charts-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+  margin-bottom: 32px;
+}
+
+@media (min-width: 1024px) {
+  .charts-grid {
+    grid-template-columns: 2fr 1fr;
+    /* 2/3 vs 1/3 layout on desktop */
+  }
+}
+
+.chart-panel {
+  background-color: white;
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.chart-panel h3 {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #4a5568;
+  margin-bottom: 16px;
+}
+
+.chart-visual {
+  height: 320px;
+}
+
+/* --- Pivot Table Styles --- */
+.pivot-panel {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.pivot-header {
+  padding: 16px 24px;
+  border-bottom: 1px solid #e2e8f0;
+  background-color: #f7fafc;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pivot-header h3 {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #4a5568;
+  margin: 0;
+}
+
+.source-tag {
+  font-size: 0.75rem;
+  font-family: monospace;
+  background-color: #e2e8f0;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.pivot-table-wrapper {
+  overflow-x: auto;
+}
+
+.pivot-table {
+  width: 100%;
+  min-width: 800px;
+  text-align: left;
+  font-size: 0.875rem;
+  color: #4a5568;
+  border-collapse: collapse;
+}
+
+.pivot-table thead {
+  text-transform: uppercase;
+  background-color: #edf2f7;
+  color: #2d3748;
+}
+
+.pivot-table th,
+.pivot-table td {
+  padding: 12px 24px;
+  border-bottom: 1px solid #edf2f7;
+}
+
+.pivot-table tbody tr:hover {
+  background-color: #f7fafc;
+}
+
+.category-tag {
+  padding: 4px 8px;
+  border-radius: 9999px;
+  /* Full rounded */
+  color: white;
+  font-size: 0.75rem;
+  display: inline-block;
+}
+
+.tag-bikes {
+  background-color: #4299e1;
+}
+
+.tag-accessories {
+  background-color: #48bb78;
+}
+
+.tag-clothing {
+  background-color: #9f7aea;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-green {
+  color: #38a169;
+  font-weight: 500;
+}
+
+.font-medium {
+  font-weight: 500;
+}
+
+.loading-screen {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  color: #4299e1;
+  font-size: 1.5rem;
+}
