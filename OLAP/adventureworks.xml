@@ -1,0 +1,118 @@
+<?xml version="1.0"?>
+<Schema name="adventureworks">
+
+  <!-- ================= SHARED DIMENSIONS ================= -->
+
+  <!-- Waktu -->
+  <Dimension name="Time" type="TimeDimension">
+    <Hierarchy hasAll="true" allMemberName="All Times" primaryKey="sk_time">
+      <Table name="dim_time"/>
+      <Level name="Year"  column="year_number"  type="Numeric" levelType="TimeYears"  uniqueMembers="true"/>
+      <Level name="Month" column="month_name"   type="String"  levelType="TimeMonths" uniqueMembers="false"/>
+      <Level name="Day"   column="day_number"   type="Numeric" levelType="TimeDays"   uniqueMembers="false"/>
+    </Hierarchy>
+  </Dimension>
+
+  <!-- Produk -->
+  <Dimension name="Product">
+    <Hierarchy hasAll="true" allMemberName="All Products" primaryKey="sk_product">
+      <Table name="dim_product"/>
+      <Level name="Product" column="product_name" uniqueMembers="true"/>
+      <Level name="Color"   column="color"        uniqueMembers="false"/>
+    </Hierarchy>
+  </Dimension>
+
+  <!-- Customer -->
+  <Dimension name="Customer">
+    <Hierarchy hasAll="true" allMemberName="All Customers" primaryKey="sk_customer">
+      <Table name="dim_customer"/>
+      <Level name="Country"       column="country"/>
+      <Level name="Province"      column="province"/>
+      <Level name="City"          column="city"/>
+      <Level name="Customer Name" column="full_name" uniqueMembers="true"/>
+    </Hierarchy>
+  </Dimension>
+
+  <!-- Vendor -->
+  <Dimension name="Vendor">
+    <Hierarchy hasAll="true" allMemberName="All Vendors" primaryKey="sk_vendor">
+      <Table name="dim_vendor"/>
+      <Level name="Vendor Name" column="vendor_name" uniqueMembers="true"/>
+    </Hierarchy>
+  </Dimension>
+
+  <!-- Tax -->
+  <Dimension name="Tax">
+    <Hierarchy hasAll="true" allMemberName="All Tax" primaryKey="sk_tax">
+      <Table name="dim_tax"/>
+      <Level name="Country"  column="country"/>
+      <Level name="Tax Type" column="tax_type"/>
+      <Level name="Rate"     column="tax_rate"/>
+    </Hierarchy>
+  </Dimension>
+
+  <!-- Currency -->
+  <Dimension name="Currency">
+    <Hierarchy hasAll="true" allMemberName="All Currency" primaryKey="sk_currency">
+      <Table name="dim_currency"/>
+      <Level name="Currency Code" column="currency_code" uniqueMembers="true"/>
+      <Level name="Currency Name" column="currency_name"/>
+      <Level name="Country"       column="country"/>
+    </Hierarchy>
+  </Dimension>
+
+  <!-- Territory -->
+  <Dimension name="Territory">
+    <Hierarchy hasAll="true" allMemberName="All Territories" primaryKey="sk_territory">
+      <Table name="dim_territory"/>
+      <Level name="Territory Group"  column="territory_group"/>
+      <Level name="Country Region"   column="country_region_code"/>
+      <Level name="Territory Name"   column="territory_name" uniqueMembers="true"/>
+    </Hierarchy>
+  </Dimension>
+
+  <!-- ===================== CUBE 1: SALES ===================== -->
+
+  <Cube name="Sales" defaultMeasure="Amount">
+    <Table name="fact_sales"/>
+
+    <!-- pakai shared dimensions -->
+    <DimensionUsage name="Time"      source="Time"      foreignKey="sk_time"/>
+    <DimensionUsage name="Product"   source="Product"   foreignKey="sk_product"/>
+    <DimensionUsage name="Customer"  source="Customer"  foreignKey="sk_customer"/>
+    <DimensionUsage name="Currency"  source="Currency"  foreignKey="sk_currency"/>
+    <DimensionUsage name="Territory" source="Territory" foreignKey="sk_territory"/>
+    <DimensionUsage name="Tax"       source="Tax"       foreignKey="sk_tax"/>
+
+    <!-- measures di fact_sales -->
+    <Measure name="Amount"      column="amount"      aggregator="sum" formatString="Standard"/>
+    <Measure name="Tax Amount"  column="tax_amount"  aggregator="sum" formatString="Standard"/>
+    <!-- kalau ada quantity_sold / total_sales_amount boleh tambahkan:
+    <Measure name="Quantity Sold"       column="quantity_sold"       aggregator="sum" formatString="Standard"/>
+    <Measure name="Total Sales Amount"  column="total_sales_amount"  aggregator="sum" formatString="Standard"/>
+    -->
+  </Cube>
+
+  <!-- ================== CUBE 2: PURCHASING =================== -->
+
+  <Cube name="Purchasing" defaultMeasure="Total Purchase Amount">
+    <Table name="fact_purchasing"/>
+
+    <DimensionUsage name="Time"       source="Time"       foreignKey="sk_time"/>
+    <DimensionUsage name="Product"    source="Product"    foreignKey="sk_product"/>
+    <DimensionUsage name="Vendor"     source="Vendor"     foreignKey="sk_vendor"/>
+    <DimensionUsage name="Currency"   source="Currency"   foreignKey="sk_currency"/>
+    <DimensionUsage name="Territory"  source="Territory"  foreignKey="sk_territory"/>
+    <DimensionUsage name="Tax"        source="Tax"        foreignKey="sk_tax"/>
+
+    <!-- measures di fact_purchasing (sesuaikan dengan tabelmu) -->
+    <Measure name="Quantity Purchased"    column="quantity_purchased"    aggregator="sum" formatString="Standard"/>
+    <Measure name="Unit Cost"             column="unit_cost"             aggregator="avg" formatString="Standard"/>
+    <Measure name="Total Purchase Amount" column="total_purchase_amount" aggregator="sum" formatString="Standard"/>
+    <Measure name="Purchase Tax Amount"   column="tax_amount"            aggregator="sum" formatString="Standard"/>
+    <!-- kalau ada purchase_order_count:
+    <Measure name="Purchase Order Count"  column="purchase_order_count"  aggregator="sum" formatString="Standard"/>
+    -->
+  </Cube>
+
+</Schema>
