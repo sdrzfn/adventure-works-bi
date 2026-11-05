@@ -79,7 +79,8 @@ export const TableOlap = ({ data }) => {
 const Dashboard = () => {
   const [dailyTrend, setDailyTrend] = useState([]);
   const [selectedMonth, setSelectedMonth] = useState(null);
-  const { user, logout } = useAuth();
+  // const { user, logout } = useAuth();
+  const { logout } = useAuth();
   const [activeMenu, setActiveMenu] = useState('dashboard');
   const [loading, setLoading] = useState(true);
 
