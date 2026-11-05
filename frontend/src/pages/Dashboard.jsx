@@ -195,29 +195,29 @@ const Dashboard = () => {
 
         <nav className="sidebar-nav">
 
-          <a
+          <button
             className={activeMenu === 'dashboard' ? 'active' : ''}
             onClick={() => setActiveMenu('dashboard')}
           >
             <LayoutDashboard size={20} /> Executive Dashboard
-          </a>
+          </button>
 
           {/* {user?.role === 'SUPER ADMIN' && ( */}
-          <a
+          <button
             className={activeMenu === 'purchasing' ? 'active' : ''}
             onClick={() => setActiveMenu('purchasing')}
           >
             <ListOrdered size={20} /> Purchasing
-          </a>
+          </button>
           {/* )} */}
 
           {/* {(user?.role === 'ADMIN' || user?.role === 'SUPER ADMIN') && ( */}
-          <a
+          <button
             className={activeMenu === 'sales' ? 'active' : ''}
             onClick={() => setActiveMenu('sales')}
           >
             <TrendingUp size={20} /> Sales
-          </a>
+          </button>
           {/* )} */}
 
         </nav>
