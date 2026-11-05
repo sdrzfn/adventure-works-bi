@@ -10,7 +10,11 @@ const app = express();
 
 // --- Middleware global ---
 app.use(cors({
-    origin: 'http://localhost:3000',
+    origin: [
+        'http://localhost:3000',
+        'https://adventureworks-bi.vercel.app',
+        'https://adventureworks.sadrakhzp.my.id'
+    ],
     credentials: true
 }));
 
@@ -21,6 +25,8 @@ app.use(cookieParser());
 app.get('/status', (req, res) => {
     res.json({ ok: true });
 });
+
+app.use("/api", testRoutes);
 
 // --- Routing utama ---
 app.use('/api', salesRoutes);
