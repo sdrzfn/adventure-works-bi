@@ -2,7 +2,7 @@
 import 'dotenv/config';
 import app from './app.js';
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3000;
 
 if (!process.env.PORT) {
     console.warn("⚠️ Warning: PORT is not defined in .env file. Using default port 3001.");
