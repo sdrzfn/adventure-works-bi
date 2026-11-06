@@ -177,9 +177,15 @@ button {
 }
 
 .logout-btn:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.3);
-  color: #fff;
+  background: linear-gradient(135deg,
+    rgba(239, 68, 68, 0.18) 0%,
+    rgba(220, 38, 38, 0.12) 50%,
+    rgba(185, 28, 28, 0.08) 100%
+  );
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border-color: rgba(248, 113, 113, 0.5);
+  color: #fca5a5;
 }
 
 .sidebar-footer {
