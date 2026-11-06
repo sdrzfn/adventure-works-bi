@@ -90,7 +90,12 @@ const Login = () => {
                     </div>
 
                     <button type="submit" className="login-btn" disabled={loading}>
-                        {loading ? 'Memproses...' : (
+                        {loading ? (
+                            <span className="btn-loading">
+                                <span className="btn-loading-text">Memproses...</span>
+                                <span className="btn-loading-pulse" aria-hidden="true"></span>
+                            </span>
+                        ) : (
                             <>
                                 Masuk Dashboard <ArrowRight size={18} />
                             </>
