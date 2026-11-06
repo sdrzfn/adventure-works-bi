@@ -53,6 +53,7 @@ router.get('/sales-by-territory', async (req, res) => {
         res.json(rows);
 
     } catch (error) {
+        console.error('sales-by-territory error:', error.message);
         res.status(500).json({ error: 'Failed to fetch sales-by-category' });
     }
 });
@@ -83,6 +84,7 @@ router.get('/sales-trend', async (req, res) => {
         res.json(rows);
 
     } catch (error) {
+        console.error('sales-trend error:', error.message);
         res.status(500).json({ error: 'Failed to fetch trend' });
     }
 });
