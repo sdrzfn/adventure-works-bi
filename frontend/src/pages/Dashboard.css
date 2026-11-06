@@ -22,6 +22,9 @@
   --accent-soft: #e8f0fe;
   --positive: #15803d;
 
+  --alert: #fd3d3d;
+  --warning: #ffe30f;
+
   --radius-sm: 6px;
   --radius-md: 10px;
   --radius-lg: 14px;
@@ -158,10 +161,15 @@ button {
   gap: 8px;
   width: 100%;
   padding: 10px 14px;
-  border: 1px solid rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(202, 18, 18, 0.459);
   border-radius: var(--radius-md);
-  background: transparent;
-  color: var(--navy-text);
+  background: linear-gradient(135deg,
+      rgba(255, 61, 61, 0.08) 0%,
+      rgba(255, 61, 61, 0.146) 50%,
+      rgba(255, 61, 61, 0.4) 100%);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  color: var(--alert);
   font-size: 0.875rem;
   font-weight: 500;
   cursor: pointer;
@@ -263,7 +271,7 @@ button {
   box-shadow: var(--shadow-sm);
 }
 
-.kpi-card > svg {
+.kpi-card>svg {
   grid-row: 1 / span 2;
   grid-column: 1;
   width: 52px;
@@ -274,7 +282,7 @@ button {
   color: var(--accent);
 }
 
-.kpi-card:nth-child(2) > svg {
+.kpi-card:nth-child(2)>svg {
   background: #e7f6ee;
   color: var(--positive);
 }
@@ -367,8 +375,8 @@ button {
   color: var(--ink-faint);
 }
 
-.chart-panel h3 + .recharts-responsive-container,
-.chart-panel h3 + div {
+.chart-panel h3+.recharts-responsive-container,
+.chart-panel h3+div {
   margin-top: 16px;
 }
 
@@ -617,7 +625,7 @@ button {
   }
 
   /* logout wrapper in JSX uses inline style marginTop:auto */
-  .sidebar > div[style] {
+  .sidebar>div[style] {
     margin: 0 0 0 auto !important;
     padding: 0 !important;
     width: auto;
