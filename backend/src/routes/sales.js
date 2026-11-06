@@ -41,7 +41,7 @@ router.get('/sales-by-territory', async (req, res) => {
             FROM fact_sales fs
             JOIN dim_territory dt 
                 ON fs.sk_territory = dt.sk_territory
-            GROUP BY dt.territory_name, dt.territory_name
+            GROUP BY dt.sk_territory, dt.territory_name
             ORDER BY value DESC;
         `);
 
@@ -67,7 +67,7 @@ router.get('/sales-trend', async (req, res) => {
             SELECT
                 dt.year,
                 dt.month,
-                DATE_FORMAT(dt.the_date, '%Y-%m') AS period,
+                CONCAT(dt.year, '-', LPAD(dt.month, 2, '0')) AS period,
                 SUM(fs.amount) AS revenue
             FROM fact_sales fs
             JOIN dim_time dt ON fs.sk_time = dt.sk_time
@@ -176,7 +176,7 @@ router.get('/drill-down-trend', async (req, res) => {
             GROUP BY dt.the_date
             ORDER BY dt.the_date
         `;
-        
+
         const [rows] = await pool.query(query)
 
         res.json(rows);
