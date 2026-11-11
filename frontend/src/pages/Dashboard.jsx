@@ -9,7 +9,6 @@ import {
   ShoppingBag,
   LogOut,
   Users,
-  TrendingDown,
   ArrowUpRight,
   ArrowDownRight,
   Activity,
@@ -17,7 +16,7 @@ import {
 
 import {
   LineChart, Line, XAxis, YAxis, CartesianGrid,
-  Tooltip, Legend, ResponsiveContainer, BarChart, Bar,
+  Tooltip, Legend, ResponsiveContainer,
 } from 'recharts';
 
 import Purchasing from './Purchasing.jsx';
@@ -106,21 +105,21 @@ const GrowthBadge = ({ signal }) => {
   );
 };
 
-// ================= COHORT CELL COMPONENT =================
-const CohortCell = ({ value, isHeader = false }) => {
-  if (isHeader) return <th className="cohort-th">{value}</th>;
+// ================= COHORT CELL COMPONENT (unused at the moment) =================
+// const CohortCell = ({ value, isHeader = false }) => {
+//   if (isHeader) return <th className="cohort-th">{value}</th>;
   
-  const pct = Number(value);
-  const intensity = Math.min(pct / 100, 1);
-  const bgColor = `rgba(37, 99, 235, ${0.08 + intensity * 0.25})`;
-  const textColor = pct >= 50 ? '#1d4ed8' : pct >= 25 ? '#2563eb' : '#64748b';
+//   const pct = Number(value);
+//   const intensity = Math.min(pct / 100, 1);
+//   const bgColor = `rgba(37, 99, 235, ${0.08 + intensity * 0.25})`;
+//   const textColor = pct >= 50 ? '#1d4ed8' : pct >= 25 ? '#2563eb' : '#64748b';
   
-  return (
-    <td className="cohort-td" style={{ backgroundColor: bgColor, color: textColor }}>
-      {value}%
-    </td>
-  );
-};
+//   return (
+//     <td className="cohort-td" style={{ backgroundColor: bgColor, color: textColor }}>
+//       {value}%
+//     </td>
+//   );
+// };
 
 // ================= DASHBOARD =================
 const Dashboard = () => {
